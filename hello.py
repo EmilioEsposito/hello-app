@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, url_for
 app = Flask(__name__)
 
 @app.route('/')
@@ -9,7 +9,7 @@ def index():
     
 @app.route('/user/<username>')
 def show_user(username):
-    return "what's up " + str(username) 
+    return "User %s" % str(username) 
 
 @app.route('/hello')
 def hello_world():
@@ -19,7 +19,7 @@ def hello_world():
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
     next_post = post_id + 1
-    return "Post: " + str(post_id) + ", Next Post: " + str(next_post)
+    return "Post: %s, Next Post %s" % (str(post_id), str(next_post))
 
 if __name__ == '__main__':
     host = os.getenv('IP', '0.0.0.0')
